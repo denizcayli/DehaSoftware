@@ -1,0 +1,338 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DEHA YAZILIM — index.css
+   Yazim stili: anlamli class isimleri + @apply (hocanin yontemi)
+   Tasarim, renkler, efektler: bizim premium siyah temamiz (ayni)
+   Dark/Light: .light yontemiyle (en uste class eklenince devreye girer)
+   ============================================================ */
+
+/* ---- Fontlar (Vite: public/fonts icinde) ---- */
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-500.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-600.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-700.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---- Renk / Font Token'lari (bizim degerler) ---- */
+@theme {
+  --color-bg: #030303;
+  --color-bg-card: #0b0b0f;
+  --color-ink: #ffffff;
+  --color-muted: #8e939e;
+  --color-cyan: #5fd6e0;
+
+  --font-display: "Clash Display", "Inter", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+/* ---- Temel ---- */
+body {
+  @apply font-sans;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+html { scroll-behavior: smooth; }
+
+/* ============================================================
+   ARKA PLAN ISIK CIZGILERI
+   ============================================================ */
+.ray-field {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 90vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ray-lines {
+  position: absolute;
+  top: -65vmax; left: 50%;
+  width: 130vmax; height: 130vmax;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg 1.2deg,
+    rgba(255, 255, 255, 0.07) 1.2deg 1.4deg,
+    transparent 1.4deg 3.2deg
+  );
+  -webkit-mask-image: radial-gradient(closest-side, transparent 65%, #000 70%, #000 85%, transparent 100%);
+          mask-image: radial-gradient(closest-side, transparent 65%, #000 70%, #000 85%, transparent 100%);
+  opacity: 0.6;
+}
+.ray-lines::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 15deg,
+    transparent 0deg 24deg,
+    rgba(95, 214, 224, 0.35) 24deg 24.3deg,
+    transparent 24.3deg 42deg,
+    rgba(155, 125, 240, 0.25) 42deg 42.4deg,
+    transparent 42.4deg 60deg
+  );
+  -webkit-mask-image: radial-gradient(closest-side, transparent 65%, #000 70%, #000 80%, transparent 95%);
+          mask-image: radial-gradient(closest-side, transparent 65%, #000 70%, #000 80%, transparent 95%);
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar-wrap {
+  @apply fixed top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50;
+}
+.navbar {
+  @apply flex items-center justify-between px-6 py-3 bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-full;
+}
+.navbar-logo {
+  @apply flex items-center gap-2 cursor-pointer font-display font-bold tracking-wide text-lg text-white;
+}
+.navbar-menu {
+  @apply hidden md:flex items-center gap-8 text-sm font-medium text-muted;
+}
+.navbar-link {
+  @apply hover:text-white transition-colors cursor-pointer;
+}
+.navbar-cta {
+  @apply text-xs font-semibold bg-white text-black px-4 py-2 rounded-full hover:bg-neutral-200 transition-colors;
+}
+
+/* Hizmetler dropdown */
+.dropdown {
+  @apply relative;
+}
+.dropdown-trigger {
+  @apply hover:text-white transition-colors flex items-center gap-1 cursor-pointer py-2;
+}
+.dropdown-menu {
+  @apply absolute left-0 mt-0 w-64 bg-bg-card border border-white/[0.08] rounded-xl shadow-xl py-2;
+}
+.dropdown-item {
+  @apply block px-4 py-3 text-xs font-semibold text-muted hover:text-cyan hover:bg-white/[0.02] transition-colors cursor-pointer;
+}
+
+/* ============================================================
+   ORTAK BOLUM PARCALARI
+   ============================================================ */
+.section {
+  @apply w-full max-w-4xl py-16 border-t border-white/[0.06];
+}
+.section-eyebrow {
+  @apply text-xs font-bold tracking-widest text-cyan uppercase;
+}
+.section-title {
+  @apply font-display text-2xl font-bold text-white mt-1;
+}
+
+/* ---- Premium Buton ---- */
+.premium-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(255, 255, 255, 0.1);
+  @apply text-black font-semibold transition-all;
+}
+.premium-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25), 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  @apply text-center max-w-4xl mx-auto flex flex-col items-center mb-24;
+}
+.hero-title {
+  @apply font-display text-4xl md:text-6xl font-bold tracking-tight text-white uppercase leading-[1.1] mb-6;
+}
+.hero-text {
+  @apply text-muted text-sm md:text-base max-w-2xl leading-relaxed mb-10;
+}
+.hero-highlight {
+  @apply text-cyan font-semibold underline decoration-cyan/40;
+}
+
+/* ============================================================
+   HAKKIMIZDA
+   ============================================================ */
+.about-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+}
+.about-body {
+  @apply md:col-span-2 text-muted text-sm leading-relaxed space-y-4;
+}
+
+/* ============================================================
+   HIZMETLER (sekmeli)
+   ============================================================ */
+.service-box {
+  @apply w-full bg-bg-card border border-white/[0.06] rounded-xl overflow-hidden shadow-2xl;
+}
+.service-tabs {
+  @apply border-b border-white/[0.06] p-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs font-medium;
+}
+.service-tab-btn {
+  @apply py-2 rounded text-muted hover:text-white cursor-pointer transition-colors;
+}
+.service-tab-btn-active {
+  @apply bg-white/10 text-white;
+}
+.service-content {
+  @apply p-8 min-h-[160px] flex items-center justify-center text-center;
+}
+.service-text {
+  @apply text-muted text-sm md:text-base max-w-2xl leading-relaxed;
+}
+
+/* ============================================================
+   SSS / AKORDEON
+   ============================================================ */
+.faq-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4 items-start;
+}
+.faq-col {
+  @apply space-y-3;
+}
+.accordion-item {
+  @apply border border-white/[0.06] bg-bg-card rounded-lg overflow-hidden;
+}
+.accordion-trigger {
+  @apply w-full text-left p-4 font-medium text-sm text-white flex justify-between items-center cursor-pointer;
+}
+.accordion-arrow {
+  @apply text-cyan text-xs transition-transform duration-300;
+}
+.accordion-content {
+  @apply overflow-hidden transition-all duration-300 bg-white/[0.01];
+}
+.accordion-answer {
+  @apply p-4 text-xs text-muted leading-relaxed border-t border-white/[0.04];
+}
+
+/* ============================================================
+   TEKLIF FORMU
+   ============================================================ */
+.form-box {
+  @apply bg-bg-card border border-white/[0.06] rounded-xl p-8 shadow-2xl transition-all;
+}
+.form-title {
+  @apply font-display text-xl font-bold text-white mb-6 text-center;
+}
+.form-stack {
+  @apply flex flex-col gap-4;
+}
+.form-input {
+  @apply w-full bg-white/[0.02] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan transition-colors;
+}
+.form-select {
+  @apply w-full bg-bg-card border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-muted focus:outline-none focus:border-cyan transition-colors;
+}
+.form-textarea {
+  @apply w-full bg-white/[0.02] border border-white/[0.08] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan transition-colors resize-none;
+}
+
+/* Onay karti */
+.form-success {
+  @apply bg-bg-card border border-cyan/30 rounded-xl p-8 shadow-2xl text-center flex flex-col items-center justify-center min-h-[300px];
+}
+.success-check {
+  @apply w-12 h-12 rounded-full bg-cyan/10 border border-cyan flex items-center justify-center text-cyan text-xl font-bold mb-4;
+}
+.success-title {
+  @apply font-display text-lg font-bold text-white mb-2;
+}
+.success-code {
+  @apply text-xs bg-cyan/10 text-cyan px-3 py-1 rounded-full font-mono mb-4 tracking-wider;
+}
+.success-text {
+  @apply text-muted text-xs max-w-sm leading-relaxed;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  @apply w-full border-t border-white/[0.06] text-muted mt-20;
+  background-color: var(--color-bg);
+}
+.footer-grid {
+  @apply max-w-5xl mx-auto px-6 pt-12 pb-6 grid grid-cols-1 md:grid-cols-3 gap-8;
+}
+.footer-title {
+  @apply text-white text-xs font-semibold uppercase tracking-wider;
+}
+.footer-link {
+  @apply hover:text-white transition-colors cursor-pointer;
+}
+.footer-bottom {
+  @apply max-w-5xl mx-auto px-6 pt-8 pb-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-600;
+}
+
+/* ============================================================
+   ANIMASYON
+   ============================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.25s ease-out; }
+
+/* ============================================================
+   DARK / LIGHT
+   Varsayilan = koyu tema (yukaridaki degerler).
+   En uste .light eklenince acik tema devreye girer.
+   ============================================================ */
+.light {
+  background-color: #f4f5fb;
+  color: #1a1a2e;
+}
+.light .navbar { @apply bg-black/[0.03] border-black/[0.06]; }
+.light .navbar-logo { @apply text-gray-900; }
+.light .navbar-menu { @apply text-gray-500; }
+.light .navbar-link:hover { @apply text-gray-900; }
+.light .navbar-cta { @apply bg-gray-900 text-white hover:bg-gray-700; }
+
+.light .dropdown-menu { @apply bg-white border-black/[0.08]; }
+.light .dropdown-item { @apply text-gray-600 hover:bg-black/[0.03]; }
+
+.light .section { @apply border-black/[0.08]; }
+.light .section-title { @apply text-gray-900; }
+
+.light .hero-title { @apply text-gray-900; }
+.light .hero-text { @apply text-gray-600; }
+
+.light .about-body { @apply text-gray-600; }
+
+.light .service-box { @apply bg-white border-black/[0.06]; }
+.light .service-tabs { @apply border-black/[0.06]; }
+.light .service-tab-btn { @apply text-gray-500 hover:text-gray-900; }
+.light .service-tab-btn-active { @apply bg-black/[0.06] text-gray-900; }
+.light .service-text { @apply text-gray-600; }
+
+.light .accordion-item { @apply bg-white border-black/[0.06]; }
+.light .accordion-trigger { @apply text-gray-900; }
+.light .accordion-content { @apply bg-black/[0.01]; }
+.light .accordion-answer { @apply text-gray-500 border-black/[0.06]; }
+
+.light .form-box { @apply bg-white border-black/[0.06]; }
+.light .form-title { @apply text-gray-900; }
+.light .form-input,
+.light .form-textarea { @apply bg-black/[0.02] border-black/[0.1] text-gray-900; }
+.light .form-select { @apply bg-white border-black/[0.1] text-gray-600; }
+
+.light .footer-title { @apply text-gray-900; }
+.light .footer-link:hover { @apply text-gray-900; }
