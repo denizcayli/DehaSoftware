@@ -190,7 +190,7 @@ html { scroll-behavior: smooth; }
 }
 /* Hero baslik — canli mor, golge YOK */
 .hero-title-glow {
-  color: #846ffc;
+  color: #fbfeff;
 }
 .hero-text {
   @apply text-sm md:text-base max-w-2xl leading-relaxed mb-10;

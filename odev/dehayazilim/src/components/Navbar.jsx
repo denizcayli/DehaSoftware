@@ -19,12 +19,6 @@ export default function Navbar({
             >
               {cat}
             </span>
-
-            {/* HİZMETLER DROPDOWN MENÜSÜ
-              - 'hidden': Varsayılan olarak menüyü gizler (Açık kalma sorununu çözer).
-              - 'group-hover:flex': Sadece mouse üzerine gelindiğinde görünür yapar.
-              - 'flex-col': İçindeki linkleri kesin olarak alt alta dizer.
-            */}
             <div className="dropdown-menu hidden group-hover:flex flex-col gap-1">
               {serviceMenu.map((service) => (
                 <span key={service.key} className="dropdown-item block">

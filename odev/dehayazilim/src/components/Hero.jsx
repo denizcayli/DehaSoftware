@@ -8,12 +8,12 @@ export default function Hero() {
       </h1>
 
       <p className="text-sm md:text-base max-w-2xl leading-relaxed mb-10" style={{ color: "var(--c-muted)" }}>
-        "Halinizden de anlıyoruz, projenizin derinliklerinden de!" Biz Deha
+        "Halinizden de anlıyoruz." <br />Biz Deha
         Yazılım olarak, karmaşık kodları işletmeniz için basit, güçlü ve kazançlı
         çözümlere dönüştürüyoruz. Sizin dilinizden konuşuyor, neye ihtiyacınız
         olduğunu tam olarak biliyoruz. Çünkü biz,
-        <span className="text-cyan font-semibold underline decoration-cyan/40">
-          {" "}halden anlıyoruz.
+        <span className="font-semibold">
+         halden anlıyoruz.
         </span>
       </p>
 
