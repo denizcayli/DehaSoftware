@@ -18,7 +18,7 @@ export default function Features({ features, theme }) {
             src={theme === "light" ? "/icons/dark1.png" : "/icons/light1.png"}
             alt={features[0].title}
             className="feature-icon w-16 h-16 mb-5 object-contain"
-          />
+         />
           <h3 className="feature-title font-display text-lg font-semibold mb-2">
             {features[0].title}
           </h3>
