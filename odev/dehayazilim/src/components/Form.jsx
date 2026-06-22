@@ -108,7 +108,6 @@ export default function Form({ services }) {
           <span className="success-code">{siparisNo}</span>
           <p className="success-text">
             En kısa sürede projenizi inceleyip sizinle iletişime geçeceğiz.
-            Hâlden anladığımızı kanıtlamak için sabırsızlanıyoruz!
           </p>
         </div>
       )}
