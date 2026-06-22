@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function Form({ services }) {
-  // Form alanlarının state'i
+
   const [formData, setFormData] = useState({
     ad: "",
     email: "",
@@ -10,24 +10,21 @@ export default function Form({ services }) {
     mesaj: "",
   });
 
-  // Gönderildi mi? + sipariş no
   const [gonderildi, setGonderildi] = useState(false);
   const [siparisNo, setSiparisNo] = useState("");
 
-  // Her input değişince state'i güncelle
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Gönderince
   const handleSubmit = (e) => {
     e.preventDefault();
-    // En azından ad ve e-posta dolu olsun
+
     if (!formData.ad.trim() || !formData.email.trim()) {
       alert("Lütfen en azından ad ve e-posta alanlarını doldurun.");
       return;
     }
-    // Rastgele 6 haneli sipariş no
+
     const rnd = Math.floor(100000 + Math.random() * 900000);
     setSiparisNo(`#DEHA-${rnd}`);
     setGonderildi(true);
@@ -36,7 +33,7 @@ export default function Form({ services }) {
   return (
     <section id="teklif-al" className="w-full max-w-lg py-16">
       {!gonderildi ? (
-        // ---- FORM HALİ ----
+
         <div className="form-box">
           <h2 className="form-title">Projenizi Deha ile Başlatın</h2>
 
@@ -81,6 +78,10 @@ export default function Form({ services }) {
               <option value="eticaret">E-Ticaret Çözümleri</option>
               <option value="ozel">Özel Web Uygulamaları</option>
               <option value="destek">Bakım & Teknik Destek</option>
+              <option value="mobil">Mobil Uygulama</option>
+              <option value="yapayzeka">Yapay Zeka</option>
+              <option value="veri">Veri Analitiği</option>
+              <option value="siber">Siber Güvenlik</option>
             </select>
 
             <textarea
@@ -91,7 +92,6 @@ export default function Form({ services }) {
               value={formData.mesaj}
               onChange={handleChange}
             ></textarea>
-
             <button
               type="submit"
               className="premium-btn text-black font-semibold text-sm w-full py-3 rounded-lg"
@@ -101,7 +101,7 @@ export default function Form({ services }) {
           </form>
         </div>
       ) : (
-        // ---- ONAY HALİ ----
+
         <div className="form-success animate-fadeIn">
           <div className="success-check">✓</div>
           <h2 className="success-title">Talebiniz Başarıyla Alınmıştır!</h2>
